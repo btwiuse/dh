@@ -59,7 +59,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: docker://btwiuse/k0s
         with:
-          args: client -hub https://k0s.herokuapp.com
+          args: agent -hub https://k0s.herokuapp.com
       - run: |
           ls -la
           pwd
