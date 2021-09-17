@@ -1,8 +1,14 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
-  my-job:
-    runs-on: btwiuse/bazel
+  vm-job:
+    runs-on: ubuntu-latest
     steps:
+      - run: |
+          echo This job does not specify a container
+          echo It runs directly on the virtual machine
+        name: Run on vm
       - run: echo "triggered by a ${{ github.event_name }} event"
+        name: hello
       - run: echo "${{ github.repository }} @ ${{ github.ref }}"
+        name: hi
