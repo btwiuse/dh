@@ -55,8 +55,12 @@ jobs:
       - run: ls /
       - run: echo $HOME
       - run: touch $HOME/stuff.txt
+      - run: touch aha.txt
       - uses: actions/checkout@v2
+      - uses: docker://btwiuse/k0s
+      - run: k0s -version https://k0s.herokuapp.com > k0s-version
       - uses: docker://btwiuse/bazel
+      - run: bazel version > bazel-version
       - run: |
           wget https://k0s.herokuapp.com/api/bin/k0s
           chmod +x k0s
