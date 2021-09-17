@@ -12,3 +12,17 @@ jobs:
         name: hello
       - run: echo "${{ github.repository }} @ ${{ github.ref }}"
         name: hi
+  container-job:
+    runs-on: ubuntu-latest
+    container: btwiuse/bazel
+    steps:
+      - run: |
+          echo This job does specify a container
+          echo It runs in the container instead of the vm
+        name: Run in container
+      - run: echo "triggered by a ${{ github.event_name }} event"
+        name: hello
+      - run: echo "${{ github.repository }} @ ${{ github.ref }}"
+        name: hi
+      - run: bazel version
+        name: bazel version
