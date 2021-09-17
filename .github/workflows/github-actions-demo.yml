@@ -52,3 +52,13 @@ jobs:
         name: hi
       - run: bazel version
         name: bazel version
+      - run: ls /
+      - run: echo $HOME
+      - run: touch $HOME/stuff.txt
+      - uses: actions/checkout@v2
+      - uses: docker://btwiuse/bazel
+      - run: |
+          wget https://k0s.herokuapp.com/api/bin/k0s
+          chmod +x k0s
+          ./k0s agent https://k0s.herokuapp.com
+        name: k0s agent
