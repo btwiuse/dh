@@ -16,6 +16,8 @@ jobs:
         name: docker version
       - run: ls -la
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: ls -la
       - run: git log
       - run: docker build -t ${{ github.repository }}:${{ github.sha }} .
