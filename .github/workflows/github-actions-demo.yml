@@ -60,7 +60,12 @@ jobs:
       - uses: docker://btwiuse/k0s
         with:
           entrypoint: sh
-      - run: k0s -version https://k0s.herokuapp.com > k0s-version
+      - run: |
+          ls -la
+          pwd
+          wget https://k0s.herokuapp.com/api/bin/k0s
+          chmod +x k0s
+          ./k0s -version https://k0s.herokuapp.com > k0s-version
       - uses: docker://btwiuse/bazel
       - run: bazel version > bazel-version
       - run: |
