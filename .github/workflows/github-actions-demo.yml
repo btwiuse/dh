@@ -15,12 +15,12 @@ jobs:
       - run: docker version
         name: docker version
       - run: ls -la
-      - run: docker build .
-        name: docker build
       - uses: actions/checkout@v2
       - run: ls -la
-      - run: docker build .
+      - run: docker build -t ${{ github.repository }}:${{ github.sha }} .
         name: docker build
+      - run: docker images
+        name: docker images
   container-job:
     runs-on: ubuntu-latest
     container: btwiuse/bazel
