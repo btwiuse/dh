@@ -14,6 +14,13 @@ jobs:
         name: hi
       - run: docker version
         name: docker version
+      - run: ls -la
+      - run: docker build .
+        name: docker build
+      - uses: actions/checkout@v2
+      - run: ls -la
+      - run: docker build .
+        name: docker build
   container-job:
     runs-on: ubuntu-latest
     container: btwiuse/bazel
