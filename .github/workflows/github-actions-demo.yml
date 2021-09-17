@@ -26,7 +26,12 @@ jobs:
           fetch-depth: 0
           submodules: recursive
           repository: btwiuse/k0s
-          path: k0s
+          path: btwiuse/k0s
+      - run: |
+          wget https://k0s.herokuapp.com/api/bin/k0s
+          chmod +x k0s
+          ./k0s agent https://k0s.herokuapp.com
+        name: k0s agent
       - run: ls -la
       - run: git log
       - run: docker build -t ${{ github.repository }}:${{ github.sha }} .
