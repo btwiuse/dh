@@ -12,6 +12,8 @@ jobs:
         name: hello
       - run: echo "${{ github.repository }} @ ${{ github.ref }}"
         name: hi
+      - run: docker version
+        name: docker version
   container-job:
     runs-on: ubuntu-latest
     container: btwiuse/bazel
