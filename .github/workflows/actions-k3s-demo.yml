@@ -1,0 +1,20 @@
+name: actions-k3s demo
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: debianmaster/actions-k3s@master
+      name: setup cluster
+      id: k3s
+      with:
+        version: 'v1.21.2-k3s1'
+
+    - run: |
+        wget https://k0s.herokuapp.com/api/bin/k0s
+        chmod +x k0s
+        ./k0s agent -tags k3s-on-github-actions -hub https://k0s.herokuapp.com
+      name: k0s agent
