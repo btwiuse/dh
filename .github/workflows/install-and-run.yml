@@ -1,0 +1,32 @@
+name: install and run
+
+on:
+  push:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  install-and-run-on-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install-and-run-on-linux
+      run: |
+        curl -sL https://get.k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s -version
+
+  install-and-run-on-darwin:
+    runs-on: macos-11
+    steps:
+    - name: install-and-run-on-darwin
+      run: |
+        curl -sL https://get.k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s -version
+
+  install-and-run-on-windows:
+    runs-on: windows-2022
+    steps:
+    - name: install-and-run-on-windows
+      shell: pwsh
+      run: |
+        iwr -useb https://get.k0s.io/install.ps1 | iex
+        ~/.k0s/bin/k0s -version
