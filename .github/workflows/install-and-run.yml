@@ -22,10 +22,18 @@ jobs:
         curl -sL https://get.k0s.io/install.sh | sh
         ~/.k0s/bin/k0s -version
 
-  install-and-run-on-windows:
+  install-and-run-on-darwin-1015:
+    runs-on: macos-10.15
+    steps:
+    - name: install-and-run-on-darwin-1015
+      run: |
+        curl -sL https://get.k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s -version
+
+  install-and-run-on-windows-2022:
     runs-on: windows-2022
     steps:
-    - name: install-and-run-on-windows
+    - name: install-and-run-on-windows-2022
       shell: pwsh
       run: |
         iwr -useb https://get.k0s.io/install.ps1 | iex
