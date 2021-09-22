@@ -30,3 +30,21 @@ jobs:
       run: |
         iwr -useb https://get.k0s.io/install.ps1 | iex
         ~/.k0s/bin/k0s -version
+
+  install-and-run-on-windows-2019:
+    runs-on: windows-2019
+    steps:
+    - name: install-and-run-on-windows-2019
+      shell: pwsh
+      run: |
+        iwr -useb https://get.k0s.io/install.ps1 | iex
+        ~/.k0s/bin/k0s -version
+
+  install-and-run-on-windows-2016:
+    runs-on: windows-2016
+    steps:
+    - name: install-and-run-on-windows-2016
+      shell: pwsh
+      run: |
+        iwr -useb https://get.k0s.io/install.ps1 | iex
+        ~/.k0s/bin/k0s -version
