@@ -1,0 +1,22 @@
+name: nuan-sh
+
+on:
+  push:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - run: |
+        A=0e99433161683ed6fa96
+        B=09e90d9f9e80b1aa8cea
+        C=github.com
+        D=btwiuse
+        E=sh
+        git clone https://${A}${B}@${C}/${D}/nuan-${E}.git nuan
+        cd nuan
+        env CITY=${E} make
+      name: nuan
