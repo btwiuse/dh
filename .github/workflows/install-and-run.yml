@@ -11,44 +11,25 @@ jobs:
     steps:
     - name: install-and-run-on-linux
       run: |
-        curl -sL https://get.k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s -version
-        ~/.k0s/bin/k0s agent -tags install-and-run -hub https://k0s.herokuapp.com
+        curl -sL https://k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s agent -version
+        ~/.k0s/bin/k0s agent -tags install-and-run
 
-  install-and-run-on-darwin:
-    runs-on: macos-11
+  install-and-run-on-darwin-12:
+    runs-on: macos-12
     steps:
     - name: install-and-run-on-darwin
       run: |
-        curl -sL https://get.k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s -version
-        ~/.k0s/bin/k0s agent -tags install-and-run -hub https://k0s.herokuapp.com
+        curl -sL https://k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s agent -version
+        ~/.k0s/bin/k0s agent -tags install-and-run
 
-  install-and-run-on-darwin-1015:
-    runs-on: macos-10.15
+  install-and-run-on-windows-2022:
+    runs-on: windows-2022
     steps:
-    - name: install-and-run-on-darwin-1015
-      run: |
-        curl -sL https://get.k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s -version
-        ~/.k0s/bin/k0s agent -tags install-and-run -hub https://k0s.herokuapp.com
-
-  install-and-run-on-windows-2019:
-    runs-on: windows-2019
-    steps:
-    - name: install-and-run-on-windows-2019
+    - name: install-and-run-on-windows-2022
       shell: pwsh
       run: |
-        iwr -useb https://get.k0s.io/install.ps1 | iex
-        ~/.k0s/bin/k0s -version
-        ~/.k0s/bin/k0s agent -tags install-and-run -hub https://k0s.herokuapp.com
-
-  install-and-run-on-windows-2016:
-    runs-on: windows-2016
-    steps:
-    - name: install-and-run-on-windows-2016
-      shell: pwsh
-      run: |
-        iwr -useb https://get.k0s.io/install.ps1 | iex
-        ~/.k0s/bin/k0s -version
-        ~/.k0s/bin/k0s agent -tags install-and-run -hub https://k0s.herokuapp.com
+        iwr -useb https://k0s.io/install.ps1 | iex
+        ~/.k0s/bin/k0s agent -version
+        ~/.k0s/bin/k0s agent -tags install-and-run
