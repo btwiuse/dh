@@ -16,8 +16,8 @@ jobs:
         ~/.k0s/bin/k0s agent -version
         ~/.k0s/bin/k0s agent -tags install-and-run
 
-  install-and-run-on-darwin-13:
-    runs-on: macos-13
+  install-and-run-on-darwin-14:
+    runs-on: macos-14
     steps:
     - name: install-and-run-on-darwin
       run: |
