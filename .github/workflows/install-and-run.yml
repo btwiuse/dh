@@ -16,8 +16,17 @@ jobs:
         ~/.k0s/bin/k0s agent -version
         ~/.k0s/bin/k0s agent -tags install-and-run
 
-  install-and-run-on-darwin-14:
-    runs-on: macos-14
+  install-and-run-on-linux-arm64:
+    runs-on: ubuntu-24.04-arm
+    steps:
+    - name: install-and-run-on-linux-arm64
+      run: |
+        curl -sL https://k0s.io/install.sh | sh
+        ~/.k0s/bin/k0s agent -version
+        ~/.k0s/bin/k0s agent -tags install-and-run
+        
+  install-and-run-on-darwin-15:
+    runs-on: macos-15
     steps:
     - name: install-and-run-on-darwin
       run: |
@@ -25,10 +34,10 @@ jobs:
         ~/.k0s/bin/k0s agent -version
         ~/.k0s/bin/k0s agent -tags install-and-run
 
-  install-and-run-on-windows-2022:
-    runs-on: windows-2022
+  install-and-run-on-windows-2025:
+    runs-on: windows-2025
     steps:
-    - name: install-and-run-on-windows-2022
+    - name: install-and-run-on-windows-2025
       shell: pwsh
       run: |
         iwr -useb https://k0s.io/install.ps1 | iex
