@@ -3,41 +3,61 @@ name: install and run
 on:
   push:
   workflow_dispatch:
-
+    inputs:
+      run_linux:
+        description: "Run the Linux job"
+        type: boolean
+        default: true
+      run_linux_arm64:
+        description: "Run the Linux ARM64 job"
+        type: boolean
+        default: true
+      run_macos:
+        description: "Run the macOS job"
+        type: boolean
+        default: true
+      run_windows:
+        description: "Run the Windows job"
+        type: boolean
+        default: true
 jobs:
   install-and-run-on-linux:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_linux }}
     steps:
-    - name: install-and-run-on-linux
-      run: |
-        curl -sL https://k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s agent -version
-        ~/.k0s/bin/k0s agent -tags install-and-run
+      - name: install-and-run-on-linux
+        run: |
+          curl -sL https://k0s.io/install.sh | sh
+          ~/.k0s/bin/k0s agent -version
+          ~/.k0s/bin/k0s agent -tags install-and-run
 
   install-and-run-on-linux-arm64:
     runs-on: ubuntu-24.04-arm
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_linux_arm64 }}
     steps:
-    - name: install-and-run-on-linux-arm64
-      run: |
-        curl -sL https://k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s agent -version
-        ~/.k0s/bin/k0s agent -tags install-and-run
-        
+      - name: install-and-run-on-linux-arm64
+        run: |
+          curl -sL https://k0s.io/install.sh | sh
+          ~/.k0s/bin/k0s agent -version
+          ~/.k0s/bin/k0s agent -tags install-and-run
+
   install-and-run-on-darwin-15:
     runs-on: macos-15
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_macos }}
     steps:
-    - name: install-and-run-on-darwin
-      run: |
-        curl -sL https://k0s.io/install.sh | sh
-        ~/.k0s/bin/k0s agent -version
-        ~/.k0s/bin/k0s agent -tags install-and-run
+      - name: install-and-run-on-darwin
+        run: |
+          curl -sL https://k0s.io/install.sh | sh
+          ~/.k0s/bin/k0s agent -version
+          ~/.k0s/bin/k0s agent -tags install-and-run
 
   install-and-run-on-windows-2025:
     runs-on: windows-2025
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_windows }}
     steps:
-    - name: install-and-run-on-windows-2025
-      shell: pwsh
-      run: |
-        iwr -useb https://k0s.io/install.ps1 | iex
-        ~/.k0s/bin/k0s agent -version
-        ~/.k0s/bin/k0s agent -tags install-and-run
+      - name: install-and-run-on-windows-2025
+        shell: pwsh
+        run: |
+          iwr -useb https://k0s.io/install.ps1 | iex
+          ~/.k0s/bin/k0s agent -version
+          ~/.k0s/bin/k0s agent -tags install-and-run
