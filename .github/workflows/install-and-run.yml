@@ -3,8 +3,6 @@ name: install and run
 on:
   push:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */1 * * *"
 
 jobs:
   install-and-run-on-linux:
